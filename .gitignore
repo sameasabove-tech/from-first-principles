@@ -1,0 +1,5 @@
+
+# Local environment files
+*.local
+.env
+.DS_Store
