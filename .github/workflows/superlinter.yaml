@@ -1,0 +1,38 @@
+name: Super-Linter
+
+on:
+  push:
+    branches: [main, develop] # Adjust branches as needed
+  pull_request:
+    branches: [main, develop] # Adjust branches as needed
+
+jobs:
+  super-lint:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Important for accurate git diffs
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4 # Use a specific version for stability
+        env:
+          VALIDATE_ALL_CODEBASE: false # Only lint changed files
+          DEFAULT_BRANCH: main # Or your default branch
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed for some linters
+          VALIDATE_JAVASCRIPT_STANDARD: false # Disable StandardJS, if not used
+          VALIDATE_PYTHON_BLACK: false # Disable Black formatting, if not used
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_BASH: true
+          VALIDATE_EDITORCONFIG: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_DOCKERFILE_HADOLINT: true
+          # Add other linters as needed, setting them to true
+          FILTER_REGEX_EXCLUDE: 'node_modules/,*.min.js' # Example exclude filter. Adjust as needed
