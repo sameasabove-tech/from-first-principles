@@ -9,9 +9,9 @@
 **Author: [Loïc Muhirwa](https://github.com/justmeloic/)** 
 
 
-# [From First Principles](fromfirstprinciple.com)
+# [From First Principles](https://fromfirstprinciple.com/)
 
-[FromFirstPrinciple.com](fromfirstprinciple.com)<br>
+[FromFirstPrinciple.com](https://fromfirstprinciple.com/)<br>
 A Website, an approach, a philosophy 
 
 ### Our Thesis
