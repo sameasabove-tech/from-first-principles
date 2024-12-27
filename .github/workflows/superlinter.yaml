@@ -2,9 +2,9 @@ name: Super-Linter
 
 on:
   push:
-    branches: [main, dev] # Adjust branches as needed
+    branches: [main, dev]
   pull_request:
-    branches: [main, dev] # Adjust branches as needed
+    branches: [main, dev]
 
 jobs:
   super-lint:
@@ -14,25 +14,26 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Important for accurate git diffs
+          fetch-depth: 0
 
       - name: Run Super-Linter
-        uses: github/super-linter@v4 # Use a specific version for stability
+        uses: github/super-linter@v4 # Or latest v4
         env:
-          VALIDATE_ALL_CODEBASE: false # Only lint changed files
-          DEFAULT_BRANCH: main # Or your default branch
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed for some linters
-          VALIDATE_JAVASCRIPT_STANDARD: false # Disable StandardJS, if not used
-          VALIDATE_PYTHON_BLACK: false # Disable Black formatting, if not used
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # *** ONLY ENABLE THE LINTERS YOU NEED ***
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
           VALIDATE_JSON: true
           VALIDATE_HTML: true
           VALIDATE_CSS: true
-          VALIDATE_TYPESCRIPT_STANDARD: false
           VALIDATE_BASH: true
           VALIDATE_EDITORCONFIG: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_DOCKERFILE_HADOLINT: true
-          # Add other linters as needed, setting them to true
-          FILTER_REGEX_EXCLUDE: 'node_modules/,*.min.js' # Example exclude filter. Adjust as needed
+          VALIDATE_JAVASCRIPT_STANDARD: true
+
+          # Exclude files/folders (important for performance)
+          FILTER_REGEX_EXCLUDE: 'node_modules/,*.min.js'
