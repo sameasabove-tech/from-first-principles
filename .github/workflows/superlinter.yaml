@@ -2,9 +2,9 @@ name: Super-Linter
 
 on:
   push:
-    branches: [main, develop] # Adjust branches as needed
+    branches: [main, dev] # Adjust branches as needed
   pull_request:
-    branches: [main, develop] # Adjust branches as needed
+    branches: [main, dev] # Adjust branches as needed
 
 jobs:
   super-lint:
