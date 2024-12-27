@@ -448,7 +448,10 @@ a:hover, a:active, a:focus {
   border-radius: 20px;
 }
 
-
+.my-wide-container {
+  max-width: 2000px; /* Example value */
+  margin: 0 auto; /* Center if needed */
+}
 /*---------------------------------------
   About section              
 -----------------------------------------*/
