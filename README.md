@@ -1,6 +1,7 @@
 <div align="center">
   <img src="docs/public/images/readme-logo.png">
-  A Website, an approach, a philosophy 
+  A website, an approach, a philosophy 
+  
   <br>
 </div>
 
