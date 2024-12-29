@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Redirect all output to the log file
+exec &> reset-dev-branch.log
+
 # Script to merge dev into main, then delete and recreate dev
 
 set -euo pipefail # Exit on any error
@@ -45,8 +48,6 @@ if branch_exists heads dev; then
     git merge --no-ff dev -m "Merge dev into main" || exit 1 # --no-ff creates a merge commit
     echo "Pushing main to origin..."
     git push origin main || exit 1
-    echo "Checking out dev branch"
-    git checkout dev || exit 1
 fi
 
 # Delete local dev branch (if it exists)
