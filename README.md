@@ -1,4 +1,12 @@
+<div align="center">
+  <img src="docs/public/images/readme-logo.png">
+  A Website, an approach, a philosophy 
+  <br>
+</div>
 
+---
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf0167e8-ec88-47b7-975d-031ba60a0934/deploy-status)](https://app.netlify.com/sites/gorgeous-figolla-bf7c9d/deploys)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justmeloic/From-First-Principles/issues)
 [![GitHub issues](https://img.shields.io/github/issues/justmeloic/From-First-Principles)](https://github.com/justmeloic/From-First-Principles/issues)
@@ -6,20 +14,19 @@
 
 
 
-**Author: [Loïc Muhirwa](https://github.com/justmeloic/)** 
+**Author:** [Loïc Muhirwa](https://github.com/justmeloic/)
 
 
-# [From First Principles](https://fromfirstprinciple.com/)
+
 
 [FromFirstPrinciple.com](https://fromfirstprinciple.com/)<br>
-A Website, an approach, a philosophy 
+
+
 
 ### Our Thesis
 
 Knowledge empowers individuals and enhances lives, and we're committed to providing a platform for lifelong learning.
 
-
-### A Quote We Think About
 
 > "When we consider the responsibility of intellectuals, our basic concern must be their role in the creation and analysis of ideology." - Noam Chomsky
 
