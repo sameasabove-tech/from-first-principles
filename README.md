@@ -1,6 +1,7 @@
 <div align="center">
   <img src="docs/public/images/readme-logo.png">
-  A Website, an approach, a philosophy 
+  A website, an approach, a philosophy 
+  
   <br>
 </div>
 
@@ -39,6 +40,8 @@ This quote resonates with the essence of "From First Principles." We strive to p
 
 *   **Contribute Code:** Developers can contribute by adding features, improving functionality, or fixing bugs. We follow standard Git practices: fork the repository and submit pull requests. Please refer to `CONTRIBUTING_DEV.md` for more details.
 *   **Contribute Content:** Writers and subject matter experts can contribute by creating informative and engaging articles. Please refer to `CONTRIBUTING_CONTENT.md` for more details on formatting and submission guidelines.
+---
+
 
 **Information is a privilege, and we believe in sharing it widely. Join us in building "From First Principles" into a valuable resource for everyone!**
 
