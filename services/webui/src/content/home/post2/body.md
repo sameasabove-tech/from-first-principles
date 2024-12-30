@@ -11,17 +11,16 @@ We use abstraction constantly, often without realizing it:
 * Computer Programming: Programmers use abstraction to create reusable code modules and build complex software systems.
 
 ### Abstraction and Intelligence
-Intelligence is typically measured using standardized tests like the Wechsler Adult Intelligence Scale (WAIS) and the Stanford-Binet Intelligence Scales. Charles Spearman, a pioneer in the field of intelligence research, observed that scores on different cognitive tests were positively correlated, indicating a common underlying factor1, he termed this factor “g”. Subsequent research findings suggests that abstraction, the ability to think conceptually and grasp complex ideas without relying on concrete examples, is closely linked to general intelligence1. Individuals with higher "g" scores often demonstrate superior abstract reasoning abilities2.  In other words, abstraction is the bedrock of human cognition.
-
+Intelligence is typically measured using standardized tests like the Wechsler Adult Intelligence Scale (WAIS) and the Stanford-Binet Intelligence Scales. Charles Spearman, a pioneer in the field of intelligence research, observed that scores on different cognitive tests were positively correlated, indicating a common underlying factor1, he termed this factor “g”. Subsequent research findings suggests that abstraction, the ability to think conceptually and grasp complex ideas without relying on concrete examples, is closely linked to general intelligence1. Individuals with higher "g" scores often demonstrate superior abstract reasoning abilities. In other words, *abstraction is the bedrock of human cognition*.
 
 ### Cultivating Abstraction
 
 It's important to recognize that while some individuals may have a natural inclination towards abstract thinking, everyone has the potential to improve this skill. While we naturally use abstraction, we can actively cultivate this skill:
-* Look for patterns: Pay attention to recurring themes and similarities in different situations.
-* Simplify complex information: Break down complex problems into smaller, more manageable parts.
-* Use analogies and metaphors: Draw parallels between different concepts to gain new insights.
-* Engage in creative activities: Activities like brainstorming, drawing, and writing can help develop abstract thinking skills.
-* Study different disciplines: Exposing yourself to diverse fields of study can broaden your perspective and enhance your ability to abstract.
+* **Look for patterns:** Pay attention to recurring themes and similarities in different situations.
+* **Simplify complex information:** Break down complex problems into smaller, more manageable parts.
+* **Use analogies and metaphors:** Draw parallels between different concepts to gain new insights.
+* **Engage in creative activities:** Activities like brainstorming, drawing, and writing can help develop abstract thinking skills.
+* **Study diverse subjects:** Study different disciplines: Exposing yourself to diverse fields of study can broaden your perspective and enhance your ability to abstract.
 
 Abstraction can be viewed as a cognitive style and a tool that can be honed with practice and conscious effort. By consciously practicing abstraction, we can become better problem-solvers, more effective learners, and more creative thinkers.
 
