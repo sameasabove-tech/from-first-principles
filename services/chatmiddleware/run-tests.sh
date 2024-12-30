@@ -4,4 +4,4 @@
 export PYTHONPATH=$(pwd)/src:$PYTHONPATH
 
 find . -name "__pycache__" -type d -exec rm -rf {} +
-uv run pytest -v
+uv run pytest -v --cov --cov-config=pyproject.toml

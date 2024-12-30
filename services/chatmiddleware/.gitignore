@@ -55,3 +55,9 @@ venv.bak/
 
 # Specific to your project
 uv.lock # You probably don't want to commit lock files unless it's an application
+
+# Test converage
+.coverage
+.coverage.*
+coverage_html_report/
+coverage.xml

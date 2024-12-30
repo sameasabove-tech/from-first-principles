@@ -10,4 +10,30 @@ dependencies = [
     "load-dotenv>=0.1.0",
     "google-generativeai>=0.8.3",
     "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
 ]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-branch --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+]
+ignore_errors = true
+show_missing = true
+skip_covered = true
+
+[tool.coverage.html]
+directory = "coverage-report"
