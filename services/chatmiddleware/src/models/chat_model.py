@@ -1,12 +1,15 @@
-import google.generativeai as genai
 import os
 
+import google.generativeai as genai
 from dotenv import load_dotenv  # Import load_dotenv
+
 
 load_dotenv()  # Load environment variables from .env file
 
 
-def get_model(api_key, model_name="gemini-1.5-flash", safety_settings=None, system_prompt=None):
+def get_model(
+    api_key, model_name="gemini-1.5-flash", safety_settings=None, system_prompt=None
+):
     """
     Configures the Generative AI API and returns a GenerativeModel instance.
 
@@ -24,7 +27,7 @@ def get_model(api_key, model_name="gemini-1.5-flash", safety_settings=None, syst
         genai.configure(api_key=api_key)
         generation_config = {}
         if system_prompt:
-          generation_config["system_instruction"] = system_prompt
+            generation_config["system_instruction"] = system_prompt
         model = genai.GenerativeModel(model_name)
         return model
     except Exception as e:
@@ -32,10 +35,10 @@ def get_model(api_key, model_name="gemini-1.5-flash", safety_settings=None, syst
         raise  # Re-raise the exception
         return None
 
+
 # Example usage:
 if __name__ == "__main__":
     api_key = os.getenv("GEMINI_API_KEY")  # Replace with your actual API key
-
 
     system_prompt = "You are a helpful and harmless AI assistant."
 
@@ -53,6 +56,8 @@ if __name__ == "__main__":
             print("Response without safety settings:", response.text)
 
         # Example of invalid model name
-        invalid_model = get_model(api_key, model_name="invalid-model") # this will raise an exception
+        invalid_model = get_model(
+            api_key, model_name="invalid-model"
+        )  # this will raise an exception
     except Exception as e:
         print(f"Main program caught an exception: {e}")
