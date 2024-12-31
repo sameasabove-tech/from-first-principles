@@ -1,4 +1,4 @@
-name: Chat Middleware CI
+name: Middleware Testing + Test Converage
 
 on:
   push:

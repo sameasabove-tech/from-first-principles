@@ -1,8 +1,7 @@
 
 
 # From First Principles - Web UI Service
-[![codecov](https://codecov.io/gh/your-username/your-repo/branch/main/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/your-username/your-repo)
-![Static Badge](https://img.shields.io/badge/cov-83%25-h)
+
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf0167e8-ec88-47b7-975d-031ba60a0934/deploy-status)](https://app.netlify.com/sites/gorgeous-figolla-bf7c9d/deploys)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -12,15 +11,25 @@
 
 **Tags:** `web-ui` `frontend` `html` `css` `javascript` `website` `user-interface` `static-site`
 
+## Table of Contents
+
+1.  [Project Overview](#project-overview)
+2.  [Directory Structure](#directory-structure)
+3.  [Development](#development)
+    *   [Technologies Used](#technologies-used)
+    *   [Local Development](#local-development)
+    *   [Building](#building)
+4.  [Contributing](#contributing)
+
 This directory (`services/webui`) contains the source code for the web user interface of "From First Principles." This UI is responsible for presenting the website's content to users in a clear, accessible, and engaging manner.
 
-**[Loïc Muhirwa](https://github.com/justmeloic/)**  initiated this project, and we enthusiastically welcome contributions from the community.
+**[Loïc Muhirwa](https://github.com/justmeloic/)** initiated this project, and we enthusiastically welcome contributions from the community.
 
-### Project Overview
+## Project Overview <a name="project-overview"></a>
 
 The Web UI is built using standard web technologies: HTML, CSS, and JavaScript. It's designed to be lightweight and performant, providing a smooth user experience across different devices.
 
-### Directory Structure
+## Directory Structure <a name="directory-structure"></a>
 
 The `services/webui/src` directory is structured as follows:
 
@@ -62,23 +71,23 @@ The `services/webui/src` directory is structured as follows:
     *   `blog.html`: The blog page template.
     *   `engineering.html`: The engineering category page (optional).
 
-### Development
+## Development <a name="development"></a>
 
-#### Technologies Used
+### Technologies Used <a name="technologies-used"></a>
 
 *   HTML5
 *   CSS3 (with Bootstrap, Font Awesome, Animate.css, and Magnific Popup)
 *   JavaScript (with jQuery)
 
-#### Local Development
+### Local Development <a name="local-development"></a>
 
-To run the website locally, you can simply open the `index.html` as the entry point for your dev server. 
+To run the website locally, you can simply open the `index.html` as the entry point for your dev server.
 
-#### Building
+### Building <a name="building"></a>
 
-If you use `Live Server` there's nothing to build :) 
+If you use `Live Server` there's nothing to build :)
 
-### Contributing
+## Contributing <a name="contributing"></a>
 
 We encourage contributions to the Web UI! Please refer to the main project's `CONTRIBUTING_DEV.md` for guidelines on contributing code.
 
