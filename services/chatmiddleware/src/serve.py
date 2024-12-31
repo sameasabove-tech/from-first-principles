@@ -16,5 +16,4 @@ def run_server():
     app.run(debug=True, port=8080)
 
 if __name__ == "__main__":
-    # Run the development server
-    run_server()
+    run_server() # Run the development server
