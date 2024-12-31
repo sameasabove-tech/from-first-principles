@@ -13,7 +13,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      PYTHONPATH: ${{ github.workspace }}/services/chatmiddleware/src:$PYTHONPATH
+      
     defaults:
       run:
         working-directory: services/chatmiddleware
