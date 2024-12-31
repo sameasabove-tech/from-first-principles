@@ -2,8 +2,6 @@
 
 # From First Principles - Web UI Service
 
-
-![Static Badge](https://img.shields.io/badge/cov-83%25-h)
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf0167e8-ec88-47b7-975d-031ba60a0934/deploy-status)](https://app.netlify.com/sites/gorgeous-figolla-bf7c9d/deploys)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
