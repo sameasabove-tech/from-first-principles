@@ -19,9 +19,9 @@ def mock_env(monkeypatch):
 def apply_patches_after_app_creation(app):
     """Applies patches after the app has been created."""
     with patch(
-        "src.routes.chat.chat_bp", new_callable=MagicMock
+        "src.routes.chat_routes.chat_bp", new_callable=MagicMock
     ) as mock_chat_bp, patch(
-        "src.routes.landing.index_bp", new_callable=MagicMock
+        "src.routes.landing_routes.index_bp", new_callable=MagicMock
     ) as mock_index_bp:
         # Now, we re-register the blueprints with our mocks.
         app.register_blueprint(mock_chat_bp)

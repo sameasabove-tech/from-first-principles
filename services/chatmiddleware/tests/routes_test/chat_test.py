@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 import pytest
 from flask import Flask
 
-from src.routes.chat import _model  # Assuming your module is named chat.py
-from src.routes.chat import chat_bp  # Assuming your module is named chat.py
+from src.routes.chat_routes import _model  # Assuming your module is named chat.py
+from src.routes.chat_routes import chat_bp  # Assuming your module is named chat.py
 
 
 # Create a dummy Flask app for testing
