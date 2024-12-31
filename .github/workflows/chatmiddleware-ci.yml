@@ -1,0 +1,44 @@
+name: Chat Middleware CI
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - "services/chatmiddleware/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "services/chatmiddleware/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: services/chatmiddleware
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        run: python -m pip install --upgrade pip && pip install uv
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run tests with coverage
+        run: uv run pytest --cov=src --cov-branch --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: services/chatmiddleware/coverage.xml 
+          fail_ci_if_error: true
+          verbose: true
