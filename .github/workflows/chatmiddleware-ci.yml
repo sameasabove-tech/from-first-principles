@@ -1,15 +1,22 @@
-name: Run tests and upload coverage
-
+name: Chat Middleware CI
 
 on:
   push:
     branches: [main, dev]
+    paths:
+      - "services/chatmiddleware/**"
   pull_request:
     branches: [main]
+    paths:
+      - "services/chatmiddleware/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: services/chatmiddleware
 
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +39,6 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml
+          files: services/chatmiddleware/coverage.xml 
           fail_ci_if_error: true
           verbose: true
