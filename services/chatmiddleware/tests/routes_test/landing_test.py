@@ -1,20 +1,29 @@
+from typing import Any
+
 import pytest
-from flask import Flask, render_template
-from src.routes.landing import index_bp  # Assuming your landing.py is at this path
+from flask import Flask
+from flask import render_template
+
+from src.routes.landing_routes import index_bp
+
 
 # Create a dummy Flask app for testing
 @pytest.fixture
 def app():
-    app = Flask(__name__, template_folder="../../src/templates")  # Point to your templates
+    app = Flask(
+        __name__, template_folder="../../src/templates"
+    )  # Point to your templates
     app.register_blueprint(index_bp)
     return app
 
+
 # Create a test client to make requests to the app
 @pytest.fixture
-def client(app):
+def client(app: Flask):
     return app.test_client()
 
-def test_index_route_renders_template(client, app):
+
+def test_index_route_renders_template(client: Any, app: Flask):
     """Test that the / route renders the index.html template."""
 
     # Simulate a request to the / route
@@ -26,7 +35,7 @@ def test_index_route_renders_template(client, app):
     # Assert that the response contains the expected content from index.html
     # You can check for specific elements or text in your template
     assert b"<!DOCTYPE html>" in response.data  # Check for doctype
-    assert b"</html>" in response.data # Check for html tag
+    assert b"</html>" in response.data  # Check for html tag
     # Example: assert b"<h1>Welcome</h1>" in response.data (if your template has this)
 
     # You can also test the rendered template content more directly (less recommended)

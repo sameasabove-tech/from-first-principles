@@ -1,7 +1,10 @@
+from unittest.mock import MagicMock
+
 import pytest
-from unittest.mock import patch, MagicMock
 from flask import Flask
-from src.routes.chat import chat_bp, _model  # Assuming your module is named chat.py
+
+from src.routes.chat import _model  # Assuming your module is named chat.py
+from src.routes.chat import chat_bp  # Assuming your module is named chat.py
 
 
 # Create a dummy Flask app for testing
@@ -58,10 +61,11 @@ def test_chat_invalid_json(client):
 
     # Assert the response status code
     assert response.status_code == 400
-    
+
     # Decode the response data to a string and check the error message
     error_message = response.data.decode()
     assert error_message == '{"error":"Request must be JSON"}\n'
+
 
 def test_chat_model_error(client, monkeypatch):
     """Test the /chat endpoint when the model raises an exception."""

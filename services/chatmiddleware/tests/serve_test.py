@@ -1,6 +1,7 @@
-import pytest
-from unittest.mock import patch, MagicMock
-from src.serve import app, run_server  # Import app and the new function
+from unittest.mock import patch
+
+from src.serve import run_server  # Import app and the new function
+
 
 @patch("src.serve.app.run")  # Mock app.run
 def test_serve_starts_app(mock_run):
