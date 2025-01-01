@@ -4,8 +4,7 @@
 # Chat Middleware (Backend Service for AI Chatbot)
 
  ![versions](https://img.shields.io/badge/python-3.13-blue?logo=python)
-[![codecov](https://codecov.io/gh/your-username/your-repo/branch/main/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/your-username/your-repo)
-![Static Badge](https://img.shields.io/badge/cov-93%25-h)
+[![codecov](https://codecov.io/gh/justmeloic/from-first-principles/graph/badge.svg?token=4GYOJ42J2C)](https://codecov.io/gh/justmeloic/from-first-principles)
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justmeloic/From-First-Principles/issues)
