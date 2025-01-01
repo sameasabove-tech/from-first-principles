@@ -7,8 +7,7 @@
 
 ---
 
-[![codecov](https://codecov.io/gh/your-username/your-repo/branch/main/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/your-username/your-repo)
-![Static Badge](https://img.shields.io/badge/cov-93%25-h)
+[![codecov](https://codecov.io/gh/justmeloic/from-first-principles/graph/badge.svg?token=4GYOJ42J2C)](https://codecov.io/gh/justmeloic/from-first-principles)
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf0167e8-ec88-47b7-975d-031ba60a0934/deploy-status)](https://app.netlify.com/sites/gorgeous-figolla-bf7c9d/deploys)
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
