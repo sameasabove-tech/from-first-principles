@@ -5,6 +5,7 @@ This script creates a Flask application using a custom middleware creation funct
 and starts the development server.
 """
 
+
 from flask import Flask  # Optional import for type hinting
 
 from appfactory import create_middleware_app
