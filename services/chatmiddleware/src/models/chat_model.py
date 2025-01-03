@@ -44,7 +44,6 @@ if __name__ == "__main__":
 
     try:
         model = get_model(api_key)
-        model.start_chat()
         if model:
             response = model.generate_content("Tell me a joke.")
             print(response.text)

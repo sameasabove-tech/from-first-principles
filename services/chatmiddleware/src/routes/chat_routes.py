@@ -2,6 +2,7 @@
 This module defines a Flask Blueprint for handling chat interactions using a Gemini language model.
 It provides an endpoint for receiving user messages and generating responses using the configured model.
 """
+
 import os
 from typing import Any
 
@@ -32,6 +33,7 @@ _model.start_chat()
 
 # Define Blueprint
 chat_bp = Blueprint("chat", __name__)
+test_history = []
 
 
 @chat_bp.route("/chat", methods=["POST"])
@@ -50,7 +52,13 @@ def handle_chat() -> Response:
 
         user_message: str = data["message"]
 
-        response = _model.generate_content(f"{user_message}")
+        response = _model.generate_content(
+            f"{user_message} convo history: {test_history}"
+        )
+
+        test_history.append({"role": "user", "content": user_message})
+        test_history.append({"role": "assistant", "content": response.text})
+
         return jsonify({"response": response.text})
 
     except BadRequest:

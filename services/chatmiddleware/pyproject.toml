@@ -17,6 +17,9 @@ dependencies = [
     "ruff>=0.8.4",
     "mypy>=1.14.1",
     "pre-commit>=4.0.1",
+    "redis>=5.2.1",
+    "flask-session>=0.8.0",
+    "black>=24.10.0",
 ]
 
 
