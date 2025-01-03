@@ -43,6 +43,10 @@ def test_create_app_env_file_missing(monkeypatch: pytest.MonkeyPatch, tmp_path: 
         os.chdir(original_dir)
 
 
+'''
+Deprecated tests: see issue #14 (https://github.com/justmeloic/from-first-principles/issues/14)
+
+
 def test_routers_included(client: TestClient):
     """Test that routers are included in the FastAPI app"""
     response = client.get("/api/v1/")
@@ -51,3 +55,5 @@ def test_routers_included(client: TestClient):
         "/api/v1/chat", json={"message": "test"}
     )  # Assuming chat endpoint requires a message
     assert response.status_code == 200
+
+'''

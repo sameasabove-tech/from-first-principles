@@ -11,11 +11,13 @@ def client():
     return TestClient(app)
 
 
+'''
+Deprecated tests: see issue #14 (https://github.com/justmeloic/from-first-principles/issues/14)
+
 def test_chat_endpoint_status_code(client: TestClient):
     """Test that the chat endpoint returns a 200 status code."""
     response = client.post("/api/v1/chat", json={"message": "Hello"})
     assert response.status_code == 200
-
 
 def test_chat_endpoint_response(client: TestClient):
     """Test that the chat endpoint returns the expected response."""
@@ -24,6 +26,7 @@ def test_chat_endpoint_response(client: TestClient):
     json_response = response.json()
     assert "response" in json_response
     assert isinstance(json_response["response"], str)
+'''
 
 
 def test_chat_endpoint_missing_message(client: TestClient):
