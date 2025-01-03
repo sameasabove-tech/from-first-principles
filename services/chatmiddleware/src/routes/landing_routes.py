@@ -3,6 +3,7 @@ This module defines a Flask Blueprint for serving the index page of the applicat
 
 It provides a simple route that renders the 'index.html' template.
 """
+
 from flask import Blueprint
 from flask import Response
 from flask import render_template
