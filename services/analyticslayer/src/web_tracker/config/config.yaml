@@ -1,0 +1,4 @@
+# General Configuartion for application
+
+DATABASE :
+    DIR_PATH : 'page_hits.db'
