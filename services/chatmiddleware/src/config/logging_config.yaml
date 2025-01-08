@@ -1,0 +1,55 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  simple:
+    format: "%(levelname)s: %(message)s"
+  detailed:
+    format: "[%(levelname)s|%(module)s|L%(lineno)d] %(asctime)s: %(levelname)s: %(message)s"
+    datefmt: "%Y-%m-%d%H:%M:%S%z"
+  json:
+    (): utils.customlogger.MyJSONFormatter
+    fmt_keys:
+      level: levelname
+      message: message
+      timestamp: timestamp
+      logger: name
+      module: module
+      function: funcName
+      line: lineno
+      thread_name: threadName
+
+filters:
+  data_filter:
+    (): utils.customlogger.DataFilter  # Assuming you place the filter in utils.customlogger
+
+handlers:
+  stderr:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stderr
+  logfile:
+    class: logging.handlers.RotatingFileHandler  # A rotating file handler keeps appending logs to a file until it reache <maxBytes> size and then creates a back up and then starts a new file. After <backupCount> backups, it starts deleting the oldest ones.
+    level: INFO
+    formatter: json
+    filename: logs/session.log.jsonl
+    maxBytes: 10485760 # 10MB
+    backupCount: 3
+  trainingdata:
+    class: logging.handlers.RotatingFileHandler  # A rotating file handler keeps appending logs to a file until it reache <maxBytes> size and then creates a back up and then starts a new file. After <backupCount> backups, it starts deleting the oldest ones.
+    level: INFO # highest-level so the handler ignores all messages lower-level messages before using the filter
+    formatter: json
+    filename: logs/data.log.jsonl
+    maxBytes: 100000000 # 10MB: 10485760
+    backupCount: 3
+    filters: [data_filter]  # Add the filter to the handler
+
+loggers:
+  root:
+    level: DEBUG
+    handlers:
+        - stderr
+        - logfile
+        - trainingdata
+      #- queue_handler  # Using the Queue handler as a proxy for all other handlers so the logging in async
