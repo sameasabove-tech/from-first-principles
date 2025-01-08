@@ -1,6 +1,10 @@
+import logging
+
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 
+
+logger = logging.getLogger("main_logger")
 
 router = APIRouter()
 
@@ -10,7 +14,8 @@ async def read_root():
     """
     Returns a simple HTML response for the root endpoint.
     """
-    return """
+    logger.info("Received request to root endpoint ('/')")
+    html_content = """
     <!DOCTYPE html>
     <html>
     <head>
@@ -41,3 +46,5 @@ async def read_root():
     </body>
     </html>
     """
+    logger.debug("Returning HTML content for root endpoint.")
+    return HTMLResponse(content=html_content)

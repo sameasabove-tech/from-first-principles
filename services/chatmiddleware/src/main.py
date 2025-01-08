@@ -5,6 +5,8 @@ This module sets up the FastAPI application, configures middleware,
 includes routers, and starts the Uvicorn server.
 """
 
+import logging
+
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -12,6 +14,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routers import chat_router
 from routers import landing_router
+from utils.config import setup_logging
+
+
+logger = logging.getLogger("main_logger")
 
 
 def create_app() -> FastAPI:
@@ -20,16 +26,25 @@ def create_app() -> FastAPI:
     """
     try:
         load_dotenv()
+        logger.info("Loaded environment variables from .env file.")
     except FileNotFoundError:
+        logger.error(
+            "'.env' file not found. Please create one for environment variables."
+        )
         raise RuntimeError(
             "'.env' file not found. Please create one for environment variables."
         ) from None
+
+    # --- CONFIGURE LOGGER ---
+    setup_logging(path="src/config/logging_config.yaml")
+    logger.debug("Logger configured.")
 
     app = FastAPI(
         title="Chat API",
         description="API for interacting with a Gemini based Chat Model.",
         version="0.1.0",
     )
+    logger.info("FastAPI application created.")
 
     # Configure CORS
     origins = ["*"]  # Allow all origins
@@ -41,14 +56,19 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    logger.info("CORS middleware configured.")
 
     # Register application routers
     app.include_router(chat_router.router, prefix="/api/v1")
+    logger.info("Chat router included.")
     app.include_router(landing_router.router, prefix="/api/v1")
+    logger.info("Landing router included.")
 
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
+    logger.info("Starting Uvicorn server...")
     uvicorn.run(app, host="0.0.0.0", port=8080)
+    logger.info("Uvicorn server stopped.")
