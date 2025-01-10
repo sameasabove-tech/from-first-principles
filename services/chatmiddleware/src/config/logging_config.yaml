@@ -3,11 +3,15 @@ disable_existing_loggers: False
 
 formatters:
   simple:
+    # Basic formatter that outputs the log level and message.
     format: "%(levelname)s: %(message)s"
   detailed:
+    # Formatter for detailed log output, including timestamp, level, module, line number, and message.
     format: "[%(levelname)s|%(module)s|L%(lineno)d] %(asctime)s: %(levelname)s: %(message)s"
     datefmt: "%Y-%m-%d%H:%M:%S%z"
   json:
+    # Custom JSON formatter (defined in 'utils.customlogger.MyJSONFormatter')
+    # Formats log records as JSON objects with specific fields.
     (): utils.customlogger.MyJSONFormatter
     fmt_keys:
       level: levelname
@@ -21,35 +25,48 @@ formatters:
 
 filters:
   data_filter:
-    (): utils.customlogger.DataFilter  # Assuming you place the filter in utils.customlogger
+    # Custom filter to select log records where the message starts with '[data]'.
+    (): utils.customlogger.DataFilter
 
 handlers:
+  queue_handler:
+    # Handler that places log records into a queue.
+    # Other handlers are configured as listeners to this queue handler.
+    class: logging.handlers.QueueHandler
+    handlers:
+        - stderr
+        - logfile
+        - trainingdata
+    respect_handler_level: True
   stderr:
+    # Stream handler to output logs to stderr.
     class: logging.StreamHandler
     level: INFO
     formatter: simple
     stream: ext://sys.stderr
   logfile:
-    class: logging.handlers.RotatingFileHandler  # A rotating file handler keeps appending logs to a file until it reache <maxBytes> size and then creates a back up and then starts a new file. After <backupCount> backups, it starts deleting the oldest ones.
+    # Rotating file handler for general application logs.
+    # Rotates log files when they reach a certain size (maxBytes) and keeps a specified number of backup files (backupCount).
+    class: logging.handlers.RotatingFileHandler
     level: INFO
     formatter: json
-    filename: logs/session.log.jsonl
-    maxBytes: 10485760 # 10MB
+    filename: logs/session.log.jsonl  # Log file name includes a placeholder 'session' that can be replaced dynamically.
+    maxBytes: 10485760  # 10MB
     backupCount: 3
   trainingdata:
-    class: logging.handlers.RotatingFileHandler  # A rotating file handler keeps appending logs to a file until it reache <maxBytes> size and then creates a back up and then starts a new file. After <backupCount> backups, it starts deleting the oldest ones.
-    level: INFO # highest-level so the handler ignores all messages lower-level messages before using the filter
+    # Rotating file handler specifically for data-related logs.
+    # Applies the 'data_filter' to only log messages that pass the filter criteria.
+    class: logging.handlers.RotatingFileHandler
+    level: INFO
     formatter: json
     filename: logs/data.log.jsonl
-    maxBytes: 100000000 # 10MB: 10485760
+    maxBytes: 100000000  # 100MB
     backupCount: 3
-    filters: [data_filter]  # Add the filter to the handler
+    filters: [data_filter]
 
 loggers:
   root:
-    level: DEBUG
+    # Root logger configuration.
+    level: DEBUG  # Sets the logging level to DEBUG, capturing all log messages.
     handlers:
-        - stderr
-        - logfile
-        - trainingdata
-      #- queue_handler  # Using the Queue handler as a proxy for all other handlers so the logging in async
+        - queue_handler # Using the Queue handler as a proxy for all other handlers so the logging is async

@@ -18,13 +18,11 @@ from routers import landing_router
 from utils.config import setup_logging
 
 
-logger = logging.getLogger("main_logger")
-
-
 def create_app() -> FastAPI:
     """
     Creates and configures the FastAPI application.
     """
+    logger = logging.getLogger()
     try:
         load_dotenv()
         logger.info("Loaded environment variables from .env file.")
@@ -36,17 +34,12 @@ def create_app() -> FastAPI:
             "'.env' file not found. Please create one for environment variables."
         ) from None
 
-    # --- CONFIGURE LOGGER ---
-    setup_logging(
-        path=os.path.join(os.path.dirname(__file__), "config/logging_config.yaml")
-    )  # Note, is the working directory is understood and controlled we can use an absolute path here: setup_logging(path=os.path.abspath("src/config/logging_config.yaml"))
-    logger.debug("Logger configured.")
-
     app = FastAPI(
         title="Chat API",
         description="API for interacting with a Gemini based Chat Model.",
         version="0.1.0",
     )
+
     logger.info("FastAPI application created.")
 
     # Configure CORS
@@ -71,6 +64,12 @@ def create_app() -> FastAPI:
 
 
 if __name__ == "__main__":
+    # --- CONFIGURE LOGGER ---
+    setup_logging(
+        path=os.path.join(os.path.dirname(__file__), "config/logging_config.yaml")
+    )  # Note, is the working directory is understood and controlled we can use an absolute path here: setup_logging(path=os.path.abspath("src/config/logging_config.yaml"))
+    logger = logging.getLogger()
+    logger.debug("Logger configured.")
     app = create_app()
     logger.info("Starting Uvicorn server...")
     uvicorn.run(app, host="0.0.0.0", port=8080)
