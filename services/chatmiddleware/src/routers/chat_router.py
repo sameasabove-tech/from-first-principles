@@ -159,11 +159,9 @@ async def handle_chat(
         redis_client.rpush(conversation_id, chat_request.message, response.text)
         logger.debug("Added user message and model response to Redis.")
 
-        """
-        for some reading, logging the chat interactions to the trainingdata logger handler refreshes the chat and loses history.
-        logger.info(f"[data][input] Conversation ID: {chat_request.message}")
-        logger.info(f"[data][output] Conversation ID: {response.text}")
-        """
+        # for some reason, logging the chat interactions to the trainingdata logger handler refreshes the chat and loses history.
+        # logger.info(f"[data][input] Conversation ID: {chat_request.message}")
+        # logger.info(f"[data][output] Conversation ID: {response.text}")
 
         return ChatResponse(response=response.text, conversation_id=conversation_id)
 
