@@ -6,7 +6,6 @@ includes routers, and starts the Uvicorn server.
 """
 
 import logging
-import os
 
 import uvicorn
 from dotenv import load_dotenv
@@ -18,7 +17,7 @@ from routers import landing_router
 from utils.config import setup_logging
 
 
-logger = logging.getLogger("main_logger")
+logger = logging.getLogger()
 
 
 def create_app() -> FastAPI:
@@ -37,9 +36,7 @@ def create_app() -> FastAPI:
         ) from None
 
     # --- CONFIGURE LOGGER ---
-    setup_logging(
-        path=os.path.join(os.path.dirname(__file__), "config/logging_config.yaml")
-    )  # Note, is the working directory is understood and controlled we can use an absolute path here: setup_logging(path=os.path.abspath("src/config/logging_config.yaml"))
+    setup_logging(path="src/config/logging_config.yaml")
     logger.debug("Logger configured.")
 
     app = FastAPI(

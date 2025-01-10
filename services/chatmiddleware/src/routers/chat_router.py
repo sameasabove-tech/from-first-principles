@@ -19,8 +19,7 @@ from pydantic import Field
 from models.chat_model import get_model  # Assuming your model has a GeminiModel class
 
 
-logger = logging.getLogger("main_logger")
-data_logger = logging.getLogger("data_logger")
+logger = logging.getLogger()
 
 # Load environment variables
 try:
@@ -162,8 +161,8 @@ async def handle_chat(
 
         """
         for some reading, logging the chat interactions to the trainingdata logger handler refreshes the chat and loses history.
-        data_logger.info(f"[input] Conversation ID: {chat_request.message}")
-        data_logger.info(f"[output] Conversation ID: {response.text}")
+        logger.info(f"[data][input] Conversation ID: {chat_request.message}")
+        logger.info(f"[data][output] Conversation ID: {response.text}")
         """
 
         return ChatResponse(response=response.text, conversation_id=conversation_id)
