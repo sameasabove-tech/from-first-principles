@@ -23,7 +23,7 @@ html, body {
 
 
 /*---------------------------------------
-  Typorgraphy              
+  Typorgraphy
 -----------------------------------------*/
 
 h1,h2,h3,h4,h5,h6 {
@@ -75,7 +75,7 @@ strong, span {
 
 
 /*---------------------------------------
- Content rendering               
+ Content rendering
 -----------------------------------------*/
 
 
@@ -103,7 +103,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 /*---------------------------------------
-  Buttons               
+  Buttons
 -----------------------------------------*/
 
 .arrow-btn i {
@@ -166,7 +166,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 /*---------------------------------------
-  General               
+  General
 -----------------------------------------*/
 
 html{
@@ -216,7 +216,7 @@ a:hover, a:active, a:focus {
 
 
 /*---------------------------------------
-  Pre loader section              
+  Pre loader section
 -----------------------------------------*/
 
 .preloader {
@@ -268,7 +268,7 @@ a:hover, a:active, a:focus {
 
 
 /*---------------------------------------
-  Nav Banner              
+  Nav Banner
 -----------------------------------------*/
 
 #nav {
@@ -281,7 +281,7 @@ a:hover, a:active, a:focus {
   padding: 2em 0 1.5em 0;
   z-index: 1;
   overflow: hidden;
-  color: #000000; 
+  color: #000000;
 }
 
   #nav > ul {
@@ -306,7 +306,7 @@ a:hover, a:active, a:focus {
     -ms-transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
     transition: color 0.1s ease-in-out, border-color 0.1s ease-in-out;
   }
-  
+
   #nav > ul > li:hover {
     background: #d7b065;
     color: #ffffff; /* Change text color to red when hovered */
@@ -417,9 +417,9 @@ a:hover, a:active, a:focus {
     }
 
 
-    
+
 /*---------------------------------------
-  Home section              
+  Home section
 -----------------------------------------*/
 
 #home {
@@ -452,7 +452,7 @@ a:hover, a:active, a:focus {
   margin: 0 auto; /* Center if needed */
 }
 /*---------------------------------------
-  About section              
+  About section
 -----------------------------------------*/
 
 #about {
@@ -486,13 +486,14 @@ a:hover, a:active, a:focus {
 
 
 /*---------------------------------------
-  Article             
+  Article
 -----------------------------------------*/
 
 
 .container-article-back {
   max-width: 800px;  /* Set a max width to prevent it from becoming too wide */
-  margin: 0 auto; 
+  margin: 0 auto;
+
 }
 
 .container-article {
@@ -501,7 +502,8 @@ a:hover, a:active, a:focus {
   padding: 42px 32px;
   width: 80%;  /* Adjust the width as needed */
   max-width: 800px;  /* Set a max width to prevent it from becoming too wide */
-  margin: 0 auto; 
+  margin: 0 auto;
+  box-shadow: -20px 20px 20px 4px rgba(1, 0.1, 0.1, 0.2);
 }
 
 .container-article p {
@@ -578,7 +580,7 @@ a:hover, a:active, a:focus {
 
 
 /*---------------------------------------
-  Work section              
+  Work section
 -----------------------------------------*/
 
 #work {
@@ -608,7 +610,7 @@ a:hover, a:active, a:focus {
 }
 
 /*---------------------------------------
-  Contact section              
+  Contact section
 -----------------------------------------*/
 
 #contact .form-control {
@@ -645,7 +647,7 @@ a:hover, a:active, a:focus {
 
 
 /*---------------------------------------
-  Footer section              
+  Footer section
 -----------------------------------------*/
 
 footer {
@@ -712,7 +714,7 @@ footer .dash-line {
 
 
 /*---------------------------------------
-  Social icon             
+  Social icon
 -----------------------------------------*/
 
 .social-icon {
@@ -751,7 +753,7 @@ footer .dash-line {
 }
 
 /*---------------------------------------
-  Mobile Responsive styles              
+  Mobile Responsive styles
 -----------------------------------------*/
 
 @media (max-width: 980px) {
@@ -807,6 +809,6 @@ footer .dash-line {
 @media (max-width: 360px) {
   #home {
     height: 85vh;
-  } 
+  }
 
 }
