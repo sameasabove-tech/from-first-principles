@@ -62,8 +62,9 @@ uv.lock # You probably don't want to commit lock files unless it's an applicatio
 coverage_html_report/
 coverage.xml
 
-# logs
-logs/
 
-# Redis
-dump.rdb
+# Ignore any "logs/" subdirectory
+**/logs/
+
+# redis: Ignore "dump.rdb" anywhere in the project
+**/dump.rdb

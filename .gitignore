@@ -7,3 +7,12 @@
 
 # Log files
 *.log
+# Local Netlify folder
+.netlify
+
+
+# Ignore any "logs/" subdirectory
+**/logs/
+
+# redis: Ignore "dump.rdb" anywhere in the project
+**/dump.rdb

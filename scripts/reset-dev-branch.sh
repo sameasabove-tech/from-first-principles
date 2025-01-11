@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# Redirect all output to the log file
-exec &> reset-dev-branch.log
+# Redirect all output to a log file and also to the console
+exec > >(tee -a logs/reset-dev-branch.log) 2>&1
 
 # Script to merge dev into main, then delete and recreate dev
 
-set -euo pipefail # Exit on any error
+#set -euo pipefail # Exit on any error
+
+# Suppress _omz_async_functions error
+export ZSH_DISABLE_COMPFIX=true
 
 # Check if git is installed
 if ! command -v git &> /dev/null; then
