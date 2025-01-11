@@ -8,8 +8,31 @@ http://www.tooplate.com/view/2100-artist
 
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700|Playfair+Display');
 
+:root {
+    --background: #f4f4f4;
+    --theme-color: #d7b065;
+    --h1-color: #3d3d3f;
+    --h2-color: #575757;
+    --h3-color: #d7b065;
+    --h4-color: #797979;
+    --p-color: #878787;
+    --home-wrapper-bg: rgba(250,250,250,0.8);
+}
+
+[data-theme="dark"] {
+  --background: #363636;
+  --theme-color: #d7b065;
+  --h1-color: #ffffff;
+  --h2-color: #eeeeee;
+  --h3-color: #d7b065;
+  --h4-color: #e1e1e1;
+  --p-color: #e1e1e1;
+  --home-wrapper-bg: rgba(0, 0, 0, 0.8);
+}
+
+
 body {
-    background: #f4f4f4;
+    background:var(--background);
     font-family: 'Nunito Sans', sans-serif;
     font-style: normal;
     font-weight: 300;
@@ -33,20 +56,20 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-  color: #3d3d3f;
+  color: var(--h1-color);
   font-family: 'Playfair Display', serif;
   font-size: 40px;
   line-height: normal;
 }
 
 h2 {
-  color: #575757;
+  color: var(--h2-color);
   font-size: 35px;
   line-height: normal;
 }
 
 h3 {
-  color: #d7b065;
+  color: var(--theme-color);
   font-size: 16px;
   font-weight: bold;
   line-height: 32px;
@@ -55,13 +78,13 @@ h3 {
 }
 
 h4 {
-  color: #797979;
+  color: var(--h4-color);
   font-size: 20px;
   font-weight: 400;
 }
 
 p {
-  color: #878787;
+  color: var(--p-color);
   font-size: 16px;
   font-weight: 300;
   line-height: 25px;
@@ -69,7 +92,7 @@ p {
 }
 
 strong, span {
-  color: #878787;
+  color: var(--p-color);
   font-weight: normal;
 }
 
@@ -121,7 +144,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .arrow-btn i:hover {
-  background: #d7b065;
+  background: var(--theme-color);
 }
 
 .read-more-btn {
@@ -140,7 +163,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .read-more-btn:hover {
-  background: #d7b065;
+  background: var(--theme-color);
   color: #ffffff;
 }
 
@@ -161,7 +184,7 @@ audio::-webkit-media-controls-play-button {
 }
 
 .back-btn:hover {
-  background: #d7b065;
+  background: var(--theme-color);
   color: #ffffff;
 }
 
@@ -174,7 +197,7 @@ html{
 }
 
 a {
-  color: #575757;
+  color: var(--h2-color);
   -webkit-transition: 0.5s;
   transition: 0.5s;
   text-decoration: none !important;
@@ -308,9 +331,9 @@ a:hover, a:active, a:focus {
   }
 
   #nav > ul > li:hover {
-    background: #d7b065;
+    background: var(--theme-color);
     color: #ffffff; /* Change text color to red when hovered */
-    border-color: #d7b065; /* Optional: change border color to red as well */
+    border-color: var(--theme-color); /* Optional: change border color to red as well */
   }
 
     #nav > ul:before, #nav > ul:after {
@@ -442,7 +465,7 @@ a:hover, a:active, a:focus {
 }
 
 .home-wrapper {
-  background: rgba(250,250,250,0.8);
+  background: var(--home-wrapper-bg);
   padding: 32px 12px;
   border-radius: 20px;
 }
@@ -474,7 +497,7 @@ a:hover, a:active, a:focus {
 }
 
 #about .col-md-4 a:hover {
-  background: #d7b065;
+  background: var(--theme-color);
   color: #ffffff;
 }
 
@@ -569,7 +592,7 @@ a:hover, a:active, a:focus {
 }
 
 .toggle-switch input:checked + .slider {
-  background-color: #d7b065; /* Green when checked */
+  background-color: var(--theme-color); /* Green when checked */
 }
 
 .toggle-switch input:checked + .slider:before {
@@ -630,7 +653,7 @@ a:hover, a:active, a:focus {
 }
 
 #contact button#submit {
-  background: #d7b065;
+  background: var(--theme-color);
   border: none;
   border-radius: 40px;
   color: #ffffff;
@@ -641,7 +664,7 @@ a:hover, a:active, a:focus {
 }
 
 #contact button#submit:hover {
-  background: #3d3d3f;
+  background: var(--h1-color);
   color: #ffffff;
 }
 
@@ -701,7 +724,7 @@ footer .newsletter button {
 }
 
 footer .newsletter button:hover {
-  background: #d7b065;
+  background: var(--theme-color);
   color: #ffffff;
 }
 
@@ -712,6 +735,85 @@ footer .dash-line {
   position: relative;
 }
 
+
+
+/*---------------------------------------
+     Dark Mode Toggle
+-----------------------------------------*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  position: fixed;
+  right: 15px;
+  top: 15px;
+}
+
+.theme-switch-wrapper span {
+  margin-right: 5px;
+  font-size: 1rem;
+}
+
+.toggle-text {
+  position: relative;
+  top: -2px;
+  right: 1px;
+  color: var(--on-background);
+}
+
+.theme-switch {
+  display: inline-block;
+  position: relative;
+  height: 23px;
+  width: 43px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider::before {
+  background: #fff;
+  bottom: 2.3px;
+  content: "";
+  height: 18px;
+  left: 2.3px;
+  position: absolute;
+  transition: 0.4s;
+  width: 18px;
+}
+
+input:checked + .slider {
+  background: var(--primary-color);
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+.fas {
+  font-size: 30px;
+  margin-right: 5px;
+}
 
 /*---------------------------------------
   Social icon
@@ -732,7 +834,7 @@ footer .dash-line {
 .social-icon li a {
   background: #f9f9f9;
   border-radius: 100%;
-  color: #3d3d3f;
+  color: var(--h1-color);
   cursor: pointer;
   font-size: 16px;
   text-decoration: none;
@@ -747,7 +849,7 @@ footer .dash-line {
 }
 
 .social-icon li a:hover {
-  background: #d7b065;
+  background: var(--theme-color);
   color: #ffffff;
   transform: scale(1.1);
 }
