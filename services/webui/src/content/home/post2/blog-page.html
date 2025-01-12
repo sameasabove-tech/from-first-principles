@@ -24,6 +24,17 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+              <!-- Dark Mode Switch -->
+    <div class="theme-switch-wrapper">
+     <span id="toggle-icon">
+         <span class="toggle-text">Light Mode</span>
+         <i class="fa-solid fa-sun"></i>
+     </span>
+     <label class="theme-switch">
+         <input type="checkbox">
+         <div class="slider round"> </div>
+     </label>
+ </div>
      <!-- Header -->
      <div id="header">
           <!-- Nav -->
@@ -57,7 +68,7 @@
                     <!-- Rounded switch -->
                     <!-- Simplify toggle with a label -->
                     <div class="toggle-container">
-                         
+
                          <label class="toggle-switch">
                               <input type="checkbox" id="toggle-simplify">
                               <span class="slider"></span>
@@ -66,11 +77,11 @@
                     </div>
 
                     <div class="centered-title-author">
-                         <h1>Abstraction is the Bedrock of Human Cognition</h1> 
-                       
+                         <h1>Abstraction is the Bedrock of Human Cognition</h1>
+
                          <p><i>Loïc Muhirwa</i></p>
                        </div>
-                       
+
                        <br>
 
 
@@ -90,8 +101,10 @@
           </div>
      </section>
 
-    
+
      <!-- SCRIPTS -->
+     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+     <script src="../../../assets/js/light-dark-mode.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
      <script src="../../../assets/js/render-article-text.js"></script>
      <script src="../../../assets/js/jquery.js"></script>
