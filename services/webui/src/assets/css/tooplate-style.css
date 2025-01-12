@@ -654,6 +654,7 @@ a:hover, a:active, a:focus {
   top: 0;
   -webkit-transition: all ease-in-out 0.4s;
   transition: all ease-in-out 0.4s;
+  box-shadow: -10px 10px 15px 5px var(--container-shadow-color);
 }
 
 #work .work-thumb:hover {
@@ -665,6 +666,7 @@ a:hover, a:active, a:focus {
 #work .work-thumb img {
   border-radius: 20px;
   cursor: crosshair;
+
 }
 
 /*---------------------------------------
