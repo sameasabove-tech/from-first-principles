@@ -11,4 +11,5 @@ dependencies = [
     "uvicorn>=0.34.0",
     "pytest>=8.3.4",
     "pytest-cov>=6.0.0",
+    "httpc>=0.6.0",
 ]
