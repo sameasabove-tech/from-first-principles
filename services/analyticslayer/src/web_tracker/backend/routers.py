@@ -23,35 +23,46 @@ async def home_page():
 @router.post("/track")
 async def track_hit(request: Request):
     data = await request.json()
+    session_id = data.get('session_id', 'unknown') # get a generated session id
+    event_type = data.get('event_type', 'page_load') # Get the event type
     page = data.get('page', 'unknown')
-    session_id = data.get('session_id', 'unknown')  # get a generated session id
-    ip_address = WebTracker.get_client_ip(request)  # get the client's IP address
+    referrer = data.get('referrer', 'unknown')
+    ip_address = WebTracker.get_client_ip(request) # get the client's IP address
 
-    WebTracker.track_page_hit(session_id, ip_address, page, datetime.today().strftime('%Y-%m-%d %H:%M:%S'))  # Track the page hit and insert into db
+    # Track the page hit and save to database
+    WebTracker.track_event(
+        session_id=session_id,
+        ip_address=ip_address,
+        event_type=event_type,
+        page=page,
+        referrer=referrer,
+        inserted_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+    )
 
     return JSONResponse({
-        "message": f"Page {page} hit recorded!",
+        "message": f"Event '{event_type}' on page '{page}' recorded!",
         "session_id": session_id,
         "ip": ip_address,
-        "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        "referrer": referrer,
+        "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
     })
 
 @router.get("/stats")
 async def get_stats():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM page_hits")
+    cursor.execute("SELECT * FROM events")
     data = cursor.fetchall()
     conn.close()
     
-    formatted_data = [
-        {
-            "page": row[0],
-            "session_id": row[1],
-            "ip_address": row[2],
-            "timestamp": row[3]
-        } for row in data
-    ]
+    formatted_data = [row for row in data]
+        # {   
+        #     "page": row[0],
+        #     "session_id": row[1],
+        #     "ip_address": row[2],
+        #     "inserted_at": row[3]
+        # } for row in data
+    # ]
     
     return JSONResponse({"data": formatted_data})
 

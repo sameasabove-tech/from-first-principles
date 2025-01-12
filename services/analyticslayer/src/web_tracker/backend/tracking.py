@@ -2,6 +2,7 @@ from datetime import datetime
 import sqlite3
 from fastapi import Request
 from fastapi.responses import JSONResponse
+import logging
 
 from config.config_utils import load_config
 
@@ -17,29 +18,48 @@ class WebTrackerStorage:
             raise RuntimeError("Error initializing database")
         
     def init_db(self):
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("""
-                CREATE TABLE IF NOT EXISTS page_hits (
-                page TEXT,
-                session_id TEXT,
-                ip_address TEXT,
-                inserted_at TEXT,
-                PRIMARY KEY (page, session_id, ip_address, inserted_at)
-            )
-        """)
-        conn.commit()
-        conn.close()
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                
+                # Create or update the table schema
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS events (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        session_id TEXT NOT NULL,
+                        ip_address TEXT NOT NULL,
+                        event_type TEXT NOT NULL,
+                        page TEXT NOT NULL,
+                        referrer TEXT,  -- New column for referring page
+                        inserted_at DATETIME NOT NULL
+                    )
+                """)
+                
+                # Create indexes for faster lookups
+                cursor.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_event_session ON events (session_id);
+                """)
+                cursor.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_event_time ON events (inserted_at);
+                """)
+                
+                conn.commit()
+        except Exception as e:
+            logging.error(f"Error initializing the database: {e}")
+            raise
 
-    def track_page_hit(self, session_id, ip_address, page, inserted_at):
-        conn = sqlite3.connect(DB_FILE)
-        cursor = conn.cursor()
-        cursor.execute("""
-            INSERT INTO page_hits (page, session_id, ip_address, inserted_at)
-            VALUES (?, ?, ?, ?)
-        """, (page, session_id, ip_address, inserted_at))
-        conn.commit()
-        conn.close()
+    def track_event(self, session_id, ip_address, event_type, page, referrer, inserted_at):
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                cursor.execute("""
+                    INSERT INTO events (session_id, ip_address, event_type, page, referrer, inserted_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (session_id, ip_address, event_type, page, referrer, inserted_at))
+                conn.commit()
+        except sqlite3.Error as e:
+            logging.error(f"Error tracking event: {e}")
+            raise
 
     def get_client_ip(self, request: Request):
         """Extract client IP address from request headers."""
