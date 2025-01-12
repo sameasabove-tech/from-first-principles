@@ -5,6 +5,7 @@ This module defines the API router for handling chat-related requests.
 It uses a pre-initialized Gemini model to generate responses to user messages.
 """
 
+import logging
 import os
 import uuid
 
@@ -18,13 +19,19 @@ from pydantic import Field
 from models.chat_model import get_model  # Assuming your model has a GeminiModel class
 
 
+logger = logging.getLogger()
+
 # Load environment variables
 try:
     _GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
     _REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")  # Default to localhost
     _REDIS_PORT = int(os.environ.get("REDIS_PORT", 6379))  # Default to 6379
     _REDIS_DB = int(os.environ.get("REDIS_DB", 0))  # Default to 0
+    logger.debug("Environment variables loaded successfully.")
 except KeyError as e:
+    logger.error(
+        "Environment variables (GEMINI_API_KEY, REDIS_HOST, REDIS_PORT, REDIS_DB) must be set."
+    )
     raise ValueError(
         "Environment variables (GEMINI_API_KEY, REDIS_HOST, REDIS_PORT, REDIS_DB) must be set."
     ) from e
@@ -33,9 +40,13 @@ except KeyError as e:
 # Initialize the AI model outside the request context for efficiency
 _model = get_model(api_key=_GEMINI_API_KEY)
 if _model is None:
+    logger.error(
+        "Failed to initialize the Gemini model. Ensure API Key and model availability."
+    )
     raise RuntimeError(
         "Failed to initialize the Gemini model. Ensure API Key and model availability."
     )
+logger.info("Gemini model initialized successfully.")
 
 
 # Redis client
@@ -48,8 +59,9 @@ def get_redis_client():
             host=_REDIS_HOST, port=_REDIS_PORT, db=_REDIS_DB, decode_responses=True
         )
         yield r
+        logger.debug("Redis client connected successfully.")
     except redis.exceptions.ConnectionError as e:
-        print(f"Error connecting to Redis: {e}")
+        logger.error(f"Error connecting to Redis: {e}")
         raise HTTPException(
             status_code=500, detail="Failed to connect to Redis."
         ) from e
@@ -59,6 +71,7 @@ def get_redis_client():
 router = APIRouter(
     tags=["chat"],
 )
+logger.debug("Chat router defined.")
 
 
 # Pydantic model for request body
@@ -120,9 +133,11 @@ async def handle_chat(
     Returns:
         ChatResponse: The generated response from the model and the conversation ID.
     """
+
     try:
         # Get or create conversation ID
         conversation_id = chat_request.conversation_id or str(uuid.uuid4())
+        logger.debug(f"Using conversation ID: {conversation_id}")
 
         # Retrieve conversation history from Redis
         history = redis_client.lrange(conversation_id, 0, -1)
@@ -130,15 +145,23 @@ async def handle_chat(
             {"role": "user" if i % 2 == 0 else "model", "parts": [msg]}
             for i, msg in enumerate(history)
         ]
+        logger.debug(f"Retrieved conversation history from Redis: {history}")
 
         # Prepare the full prompt (history + new message)
         messages = history + [{"role": "user", "parts": [chat_request.message]}]
+        logger.debug("Prepared full prompt for model.")
 
         # Generate response using the model
         response = _model.generate_content(messages)
+        logger.debug("Generated response from model.")
 
         # Add user message and model response to Redis
         redis_client.rpush(conversation_id, chat_request.message, response.text)
+        logger.debug("Added user message and model response to Redis.")
+
+        # for some reason, logging the chat interactions to the trainingdata logger handler refreshes the chat and loses history.
+        # logger.info(f"[data][input] Conversation ID: {chat_request.message}")
+        # logger.info(f"[data][output] Conversation ID: {response.text}")
 
         return ChatResponse(response=response.text, conversation_id=conversation_id)
 

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById("chat-messages");
     const chatInput = document.getElementById("chat-input");
     const sendBtn = document.getElementById("send-btn");
-    const llmModelSelect = document.getElementById("llm-model");
+    const aiFunctionalitySelect = document.getElementById("ai-functionality-select");
 
     // Generate a unique session ID for the user (using localStorage)
     let sessionId = localStorage.getItem("session_id");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addMessage(userMessage, "user");
       chatInput.value = "";
 
-      const selectedModel = llmModelSelect.value; // Still sent to server (if needed)
+      const selectedModel = aiFunctionalitySelect.value; // Still sent to server (if needed)
 
       try {
         const payload = {
