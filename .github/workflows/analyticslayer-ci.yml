@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/chatmiddleware
+        working-directory: services/analyticslayer
 
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +45,6 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: services/chatmiddleware/coverage.xml
+          files: services/analyticslayer/coverage.xml
           fail_ci_if_error: true
           verbose: true
